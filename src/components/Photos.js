@@ -4,10 +4,9 @@ import LoadingSpinner from './LoadingSpinner';
 
 const Photos = () => {
     const dispatch = useDispatch();
-    const loading = useSelector(state => state.photos.loading);
-    const photos = useSelector(state => state.photos.photos);
-    const error = useSelector(state => state.photos.error);
-
+    const photosInfo = useSelector(state => state.photos);
+    const {loading, photos, error} = photosInfo;
+    
     return ( 
         <div className="container">
             <h1>Photos</h1>
@@ -17,7 +16,7 @@ const Photos = () => {
                     loading && <LoadingSpinner />
                 }
                 {
-                    photos && photos.length>0 &&
+                   photos.length &&
                     photos.map(photo => (
                         <div className="m-1 p-2" key={photo.id} style={{border: '1px solid grey'}}>
                             <p>{photo.title}</p>
