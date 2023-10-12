@@ -4,10 +4,9 @@ import LoadingSpinner from './LoadingSpinner';
 
 const Todos = () => {
     const dispatch = useDispatch();
-    const loading = useSelector(state => state.todos.loading);
-    const todos = useSelector(state => state.todos.todos);
-    const error = useSelector(state => state.todos.error);
-
+    const todosInfo = useSelector(state => state.todos);
+    const {loading, todos, error} = todosInfo;
+    
     return ( 
         <div className="container">
             <h1>Todos</h1>
@@ -17,7 +16,7 @@ const Todos = () => {
                     loading && <LoadingSpinner />
                 }
                 {
-                    todos && todos.length>0 &&
+                    todos.length &&
                     todos.map(todo => (
                         <div className="m-1 p-2" key={todo.id} style={{border: '1px solid grey'}}>
                             <p>{todo.title}</p>
